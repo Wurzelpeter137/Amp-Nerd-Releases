@@ -1,4 +1,4 @@
-# Regeneriert releases.html, sobald ein Release veröffentlicht (oder bearbeitet)
+# Regeneriert download.html, sobald ein Release veröffentlicht (oder bearbeitet)
 # wurde, und committed das Ergebnis zurück. Besucher der Website benötigen
 # kein JavaScript – die Page ist statisch.
 name: render-releases
@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Render releases.html
+      - name: Render download.html
         run: node scripts/render-releases.mjs
         env:
           # Optional: erhöht den API-Rate-Limit. Ohne Token nutzt der
@@ -37,10 +37,10 @@ jobs:
         run: |
           git config user.name  "$GH_COMMITTER_NAME"
           git config user.email "$GH_COMMITTER_EMAIL"
-          if git diff --quiet releases.html && [ -z "$(git status --porcelain releases.html)" ]; then
-            echo "releases.html unchanged – nothing to commit."
+          if git diff --quiet download.html && [ -z "$(git status --porcelain download.html)" ]; then
+            echo "download.html unchanged – nothing to commit."
           else
-            git add releases.html
+            git add download.html
             git commit -m "chore(releases): render-releases $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi

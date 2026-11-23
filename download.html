@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Releases &amp; Change Log · Amp Nerd</title>
-  <meta name="description" content="Alle veröffentlichten Versionen von Amp Nerd mit Change Log und Installationsdateien (Windows-Setup, macOS-PKG, GPG-Unterschriften).">
+  <title>Download · Amp Nerd</title>
+  <meta name="description" content="Amp Nerd herunterladen – Windows 10/11 64 Bit (VST3, CPU mit AVX2) und macOS 10.15+ (VST3 und Audio Unit), mit Installationshinweisen und dem kompletten Change Log.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- AUTO-GENERATED: scripts/render-releases.mjs, 2026-11-23 20:16 UTC – nicht manuell editieren -->
+<!-- AUTO-GENERATED: scripts/render-releases.mjs, 2026-11-23 21:05 UTC – nicht manuell editieren -->
 <header class="site">
     <div class="wrap site-inner">
       <a class="brand" href="index.html">
@@ -19,17 +19,65 @@
         <a href="index.html">Start</a>
         <a href="features.html">Funktionen</a>
         <a href="models.html">Modelle</a>
-        <a href="releases.html" class="active" aria-current="page">Releases</a>
-        <a href="install.html">Installation</a>
+        <a href="download.html" class="active" aria-current="page">Download</a>
       </nav>
     </div>
   </header>
 
 <main>
-  <section class="section">
+  <section class="hero">
   <div class="wrap">
+    <span class="kicker">Windows &amp; macOS</span>
+    <h1>Download</h1>
+    <p class="lead">
+      Die aktuellen Installer stehen pro Plattform in den
+      <a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases" rel="noopener">GitHub-Releases</a> – unten
+      direkt als Button, jeweils mit den Installationshinweisen für das
+      eigene System. Darunter das komplette Change Log aller Versionen.
+    </p>
+  </div>
+</section>
+<section class="section section-tight" id="download">
+  <div class="wrap">
+    <div class="dl-tabs" aria-label="Download nach Betriebssystem">
+  <input type="radio" name="dl-os" id="dl-tab-win" class="dl-radio" checked>
+  <input type="radio" name="dl-os" id="dl-tab-mac" class="dl-radio">
+  <div class="dl-head">
+    <label for="dl-tab-win">Windows</label>
+    <label for="dl-tab-mac">macOS</label>
+  </div>
+    <div class="dl-body" id="dl-body-win">
+    <a class="btn btn-gold dl-btn" href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-Windows-Setup.exe" rel="noopener">Für Windows herunterladen</a>
+    <p class="dl-file">AmpNerd-1.59.0-Windows-Setup.exe · 1,6 MB</p>
+    <dl class="dl-info">
+      <div><dt>System</dt><dd>Windows 10/11, 64 Bit — CPU mit <strong>AVX2</strong> (Intel ab 4. Generation „Haswell“ 2013; AMD ab Ryzen).</dd></div>
+      <div><dt>Installationsort</dt><dd><code>C:\Program Files\Common Files\VST3\Amp Nerd.vst3</code></dd></div>
+      <div><dt>Erster Start</dt><dd>Nicht signiert — erscheint „Der Computer wurde durch Windows geschützt“: <em>Mehr erfahren &rarr; Trotzdem ausführen</em>. Deinstallation über <em>Einstellungen &rarr; Apps</em>.</dd></div>
+      <div><dt>Wichtig</dt><dd>Den DAW-Host (Studio One, Cubase, Reaper …) <strong>vorher schließen</strong>, danach neu starten bzw. die Plugins neu scannen.</dd></div>
+    </dl>
+  </div>
+    <div class="dl-body" id="dl-body-mac">
+    <a class="btn btn-gold dl-btn" href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-macOS.pkg" rel="noopener">Für macOS herunterladen</a>
+    <p class="dl-file">AmpNerd-1.59.0-macOS.pkg · 7,3 MB</p>
+    <dl class="dl-info">
+      <div><dt>System</dt><dd>macOS 10.15+ — <strong>VST3 und Audio Unit</strong>, auf Apple Silicon und auf Intel.</dd></div>
+      <div><dt>Installationsort</dt><dd><code>/Library/Audio/Plug-Ins/VST3</code> und <code>/Library/Audio/Plug-Ins/Components</code></dd></div>
+      <div><dt>Erster Start</dt><dd>Von Apple nicht attestiert — Rechtsklick auf die Datei &rarr; <em>Öffnen</em>, oder <em>Systemeinstellungen &rarr; Datenschutz &amp; Sicherheit &rarr; trotzdem öffnen</em>.</dd></div>
+      <div><dt>Wichtig</dt><dd>Den DAW-Host (Logic, Studio One …) <strong>vorher schließen</strong>, danach neu starten bzw. die Plugins neu scannen.</dd></div>
+    </dl>
+  </div>
+</div>
+<div class="note-box dl-note">
+  <p><strong>CPU-Last:</strong> je nach Modell ca. 40–55&nbsp;% eines CPU-Kerns bei „Normal 4x“; „Eco 2x“ braucht etwa die Hälfte, „Hoch 8x“ das Doppelte (gemessen auf einem aktuellen Desktop-Prozessor).</p>
+  <p><strong>Eingangspegel:</strong> die Eingangsanzeige im Plugin zeigt typische Single-Coil- und Humbucker-Bereiche. Liegt die Anschlagsspitze daneben, mit <strong>EINGANG dB</strong> abstimmen – sonst klingt jeder Verstärker zu sauber oder zu verzerrt.</p>
+</div>
+  </div>
+</section>
+<section class="section section-tight" id="changelog">
+  <div class="wrap">
+    <h2>Change Log</h2>
     <p class="lead-in">
-      Die neuste Version und das komplette Change Log – direkt aus den
+      Alle Versionen direkt aus den
       <a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases" rel="noopener">GitHub-Releases</a> übernommen.
       Diese Seite wird automatisch erzeugt und bei jedem neuen Release
       aktualisiert; der Quellworkflow ist
@@ -45,10 +93,6 @@
 <ul>  <li><strong>Neue Standardwerte: Qualität „Eco 2x“ und DYN an.</strong> Gilt für neu eingefügte Plugin-Instanzen; gespeicherte Songs und Presets behalten ihre Einstellung. Weniger Rechenlast von Anfang an; „Normal 4x“ / „Hoch 8x“ und DYN aus bleiben wählbar.</li>
 </ul>
     </div>
-    <div class="assets"><div class="assets-row"><a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-macOS.pkg" rel="noopener">AmpNerd-1.59.0-macOS.pkg</a><span class="size">7,3 MB</span></div>
-<div class="assets-row"><a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-macOS.pkg.sig" rel="noopener">AmpNerd-1.59.0-macOS.pkg.sig</a><span class="size">GPG-Unterschrift <em class="sig">(signiert)</em></span></div>
-<div class="assets-row"><a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-Windows-Setup.exe" rel="noopener">AmpNerd-1.59.0-Windows-Setup.exe</a><span class="size">1,6 MB</span></div>
-<div class="assets-row"><a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/download/v1.59.0/AmpNerd-1.59.0-Windows-Setup.exe.sig" rel="noopener">AmpNerd-1.59.0-Windows-Setup.exe.sig</a><span class="size">GPG-Unterschrift <em class="sig">(signiert)</em></span></div></div>
     <p class="release-source"><a href="https://github.com/Wurzelpeter137/Amp-Nerd-Releases/releases/tag/v1.59.0" rel="noopener">Details bei GitHub &rarr;</a></p>
   </div>
 </div>

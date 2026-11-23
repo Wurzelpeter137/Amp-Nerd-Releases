@@ -348,21 +348,77 @@ td code, p code, li code {
 .release-notes p { margin-bottom: 0.7em; }
 .release-notes code { white-space: normal; }
 
-.assets { font-size: 0.9rem; }
-.assets .sig { color: var(--green); font-size: 0.82rem; }
-.assets a { font-family: var(--mono); font-size: 0.86em; word-break: break-all; }
-.assets-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 0;
-  border-top: 1px dashed var(--border);
-}
-.assets-row .size { color: var(--faint); font-size: 0.84rem; }
-.assets-row .sig { color: var(--green); font-style: normal; }
 .release hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 .release-source { font-size: 0.88rem; margin-top: 12px; margin-bottom: 0; }
+
+/* Download tabs — CSS-only (hidden radio inputs, zero JS; user, 2026-11-23).
+   Inputs, labels and panels are siblings inside .dl-tabs, so the ~ combinator
+   drives both the active label and panel visibility. */
+
+.dl-tabs {
+  border: 1px solid var(--border-solid);
+  border-radius: var(--radius);
+  background: var(--panel);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.dl-radio { position: absolute; opacity: 0; pointer-events: none; }
+.dl-head {
+  display: flex;
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--border-solid);
+}
+.dl-head label {
+  flex: 1;
+  text-align: center;
+  padding: 12px 16px;
+  font-weight: 650;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  border-right: 1px solid var(--border);
+}
+.dl-head label:last-child { border-right: none; }
+.dl-head label:hover { color: var(--text); }
+#dl-tab-win:checked ~ .dl-head label[for="dl-tab-win"],
+#dl-tab-mac:checked ~ .dl-head label[for="dl-tab-mac"] {
+  color: var(--gold-bright);
+  background: linear-gradient(180deg, rgba(217, 168, 66, 0.10), transparent 70%), var(--panel);
+  box-shadow: inset 0 -2px 0 var(--gold);
+}
+#dl-tab-win:focus-visible ~ .dl-head label[for="dl-tab-win"],
+#dl-tab-mac:focus-visible ~ .dl-head label[for="dl-tab-mac"] {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+.dl-body { display: none; padding: 20px 22px 22px; }
+#dl-tab-win:checked ~ #dl-body-win,
+#dl-tab-mac:checked ~ #dl-body-mac { display: block; }
+.dl-btn { font-size: 1.06rem; padding: 13px 28px; }
+.dl-file {
+  margin: 8px 0 0;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--faint);
+  word-break: break-all;
+}
+.dl-file a { color: var(--blue-bright); }
+.dl-info { margin: 16px 0 0; display: grid; gap: 9px; }
+.dl-info > div {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+.dl-info dt { font-weight: 650; font-size: 0.88rem; color: var(--muted); }
+.dl-info dd { margin: 0; font-size: 0.93rem; }
+.dl-info code { white-space: normal; }
+.dl-note { margin: 0; }
+@media (max-width: 600px) {
+  .dl-info > div { grid-template-columns: 1fr; gap: 2px; }
+  .dl-head label { padding: 10px 8px; font-size: 0.92rem; }
+}
 
 /* Featured (latest) release: one warm island above the cool log (user, 2026-11-23) */
 .release.featured {
@@ -396,7 +452,7 @@ td code, p code, li code {
 .log-entry .log-notes li { margin-bottom: 0.3em; }
 .log-more { margin: 26px 0 0; }
 
-/* ---------- Install page ---------- */
+/* ---------- Note box (shared) ---------- */
 
 /* Warm island — one of the few brown/gold spots on the cool page. */
 .note-box {
