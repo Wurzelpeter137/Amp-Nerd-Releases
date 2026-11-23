@@ -209,11 +209,12 @@ figcaption {
   margin-top: 8px;
 }
 
-/* Models page: the screenshot floats right at 33% width beside the hero
-   intro text; the hero contains its float, so the model table below starts
-   at full width (rows keep clear: both as a safety). */
+/* Models page: the screenshot floats right in a 50:50 column beside the
+   hero intro text (image ≈ text-column height); the hero contains its
+   float (flow-root), so the model table below starts at full width
+   (rows keep clear: both as a safety). */
 .models-hero .wrap { display: flow-root; }
-.models-figure { float: right; width: 33%; margin: 4px 0 18px 28px; }
+.models-figure { float: right; width: calc(50% - 14px); margin: 4px 0 18px 28px; }
 
 .card {
   background: var(--panel);
