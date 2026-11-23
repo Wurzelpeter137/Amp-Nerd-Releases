@@ -209,6 +209,15 @@ figcaption {
   margin-top: 8px;
 }
 
+/* Models page: text left, screenshot right at natural size (never upscaled). */
+.models-layout { display: flex; gap: 36px; align-items: flex-start; }
+.models-text { flex: 1 1 auto; min-width: 0; }
+.models-figure { flex: 0 0 auto; width: 540px; max-width: 100%; }
+@media (max-width: 980px) {
+  .models-layout { flex-direction: column; }
+  .models-figure { align-self: flex-start; }
+}
+
 .card {
   background: var(--panel);
   border: 1px solid var(--border);
