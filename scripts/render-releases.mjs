@@ -351,6 +351,9 @@ function renderPage(releases) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Download · Amp Nerd</title>
   <meta name="description" content="Amp Nerd herunterladen – Windows 10/11 64 Bit (VST3, CPU mit AVX2) und macOS 10.15+ (VST3 und Audio Unit), mit Installationshinweisen und dem kompletten Change Log.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
