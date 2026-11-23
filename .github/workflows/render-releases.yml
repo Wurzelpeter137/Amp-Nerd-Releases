@@ -1,0 +1,46 @@
+# Regeneriert releases.html, sobald ein Release veröffentlicht (oder bearbeitet)
+# wurde, und committed das Ergebnis zurück. Besucher der Website benötigen
+# kein JavaScript – die Page ist statisch.
+name: render-releases
+
+on:
+  release:
+    types: [published, unpublished, edited, created, prereleased]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Render releases.html
+        run: node scripts/render-releases.mjs
+        env:
+          # Optional: erhöht den API-Rate-Limit. Ohne Token nutzt der
+          # Skript die öffentliche API (User-Agent ist gesetzt).
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Commit & push (if changed)
+        env:
+          GH_COMMITTER_NAME: "github-actions[bot]"
+          GH_COMMITTER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name  "$GH_COMMITTER_NAME"
+          git config user.email "$GH_COMMITTER_EMAIL"
+          if git diff --quiet releases.html && [ -z "$(git status --porcelain releases.html)" ]; then
+            echo "releases.html unchanged – nothing to commit."
+          else
+            git add releases.html
+            git commit -m "chore(releases): render-releases $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
