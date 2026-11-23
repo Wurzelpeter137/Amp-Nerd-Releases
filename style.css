@@ -209,14 +209,9 @@ figcaption {
   margin-top: 8px;
 }
 
-/* Models page: text left, screenshot right at natural size (never upscaled). */
-.models-layout { display: flex; gap: 36px; align-items: flex-start; }
-.models-text { flex: 1 1 auto; min-width: 0; }
-.models-figure { flex: 0 0 auto; width: 540px; max-width: 100%; }
-@media (max-width: 980px) {
-  .models-layout { flex-direction: column; }
-  .models-figure { align-self: flex-start; }
-}
+/* Models page: the screenshot floats right at 33% width, text flows on the
+   left; the model rows below must run at full width past the float. */
+.models-figure { float: right; width: 33%; margin: 4px 0 18px 28px; }
 
 .card {
   background: var(--panel);
@@ -316,6 +311,7 @@ td code, p code, li code {
 }
 .model-row {
   display: grid;
+  clear: both;
   grid-template-columns: minmax(180px, 2fr) minmax(120px, 1fr) minmax(0, 3fr);
   gap: 16px;
   padding: 12px 14px;
@@ -327,6 +323,7 @@ td code, p code, li code {
 .model-row .desc { color: var(--muted); font-size: 0.95rem; }
 @media (max-width: 720px) {
   .model-row { grid-template-columns: 1fr; gap: 4px; }
+  .models-figure { float: none; width: 100%; margin: 0 0 1em; }
 }
 
 /* ---------- Releases page ---------- */
