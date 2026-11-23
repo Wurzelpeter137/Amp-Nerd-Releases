@@ -157,9 +157,10 @@ function renderAssets(assets) {
   return `<div class="assets">${rows.join("\n")}</div>`;
 }
 
-function renderReleaseBody(release) {
+/** The latest release, featured large: notes, assets + signatures, GitHub link. */
+function renderFeatured(release) {
   return (
-    `<div class="release">\n` +
+    `<div class="release featured">\n` +
     `  <div class="release-head">\n` +
     `    <span class="ver">${escapeHtml(release.name || release.tag_name)}</span>\n` +
     `    <span class="date">${formatDate(release.published_at)}</span>\n` +
@@ -171,6 +172,19 @@ function renderReleaseBody(release) {
       release.html_url
     )}" rel="noopener">Details bei GitHub &rarr;</a></p>\n` +
     `  </div>\n` +
+    `</div>`
+  );
+}
+
+/** A compact change-log entry: version, date, notes only — no assets, no buttons. */
+function renderLogEntry(release) {
+  return (
+    `<div class="log-entry">\n` +
+    `  <div class="log-head">\n` +
+    `    <span class="ver">${escapeHtml(release.name || release.tag_name)}</span>\n` +
+    `    <span class="date">${formatDate(release.published_at)}</span>\n` +
+    `  </div>\n` +
+    `  <div class="log-notes">\n${renderNotes(release.body)}\n  </div>\n` +
     `</div>`
   );
 }
@@ -212,16 +226,22 @@ function renderPage(releases) {
       `    <code>render-releases</code> und erzeugt diese Seite neu.</p>\n` +
       `  </div>\n</section>`;
   } else {
+    const [featured, ...log] = releases;
     body =
       `<section class="section">\n  <div class="wrap">\n` +
       `    <p class="lead-in">\n` +
-      `      Alle veröffentlichten Versionen mit ihren Änderungen – direkt aus den\n` +
+      `      Die neuste Version und das komplette Change Log – direkt aus den\n` +
       `      <a href="${UPSTREAM}/releases" rel="noopener">GitHub-Releases</a> übernommen.\n` +
       `      Diese Seite wird automatisch erzeugt und bei jedem neuen Release\n` +
       `      aktualisiert; der Quellworkflow ist\n` +
       `      <a href="${UPSTREAM}/blob/main/scripts/render-releases.mjs" rel="noopener">render-releases.mjs</a>.\n` +
       `    </p>\n` +
-      `    ${releases.map(renderReleaseBody).join("\n\n")}\n` +
+      `    ${renderFeatured(featured)}\n\n` +
+      (log.length
+        ? `    <h2 class="log-title">Ältere Versionen</h2>\n` +
+          `    ${log.map(renderLogEntry).join("\n\n")}\n\n`
+        : ``) +
+      `    <p class="log-more"><a class="btn btn-gold" href="${UPSTREAM}/releases" rel="noopener">Alle Releases auf GitHub</a></p>\n` +
       `  </div>\n</section>`;
   }
 

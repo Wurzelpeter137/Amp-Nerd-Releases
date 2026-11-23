@@ -1,20 +1,33 @@
 /* Amp Nerd – Website
-   Dark/gold design, no external dependencies, no JS on the visitor side. */
+   Temperature scheme after the plugin (see docs, Website requirements 7):
+   cool anthracite base (schematic area) + green/blue accents (signal path,
+   oscilloscope); warm gold/brown used sparingly as "islands" (header area).
+   No external dependencies, no JS on the visitor side. */
 
 :root {
-  --bg: #15120e;
-  --bg-soft: #1c1813;
-  --panel: #221d16;
-  --panel-2: #2a241b;
-  --border: #3b332599;
-  --border-solid: #3b3325;
-  --text: #ece4d4;
-  --muted: #b3a88f;
-  --faint: #8d8370;
+  /* Cool base — the schematic area of the plugin (anthracite, slight green cast). */
+  --bg: #16191b;
+  --bg-soft: #1a1e21;
+  --panel: #1e2326;
+  --panel-2: #252b2f;
+  --border: #38424766;
+  --border-solid: #384247;
+  --text: #e2e8e8;
+  --muted: #93a5a4;
+  --faint: #6d807e;
+
+  /* Cool accents — signal path and oscilloscope of the plugin. */
+  --green: #56c26e;
+  --blue: #5ba7d3;
+  --blue-bright: #82c6ea;
+
+  /* Warm islands — the header area of the plugin (brown/gold). Used sparingly. */
+  --warm-bg: #261e11;
+  --warm-text: #d8c8a4;
   --gold: #d9a842;
   --gold-bright: #f0c464;
   --gold-dim: #a57f2f;
-  --green: #7fbf6b;
+
   --red: #d97b5f;
   --radius: 10px;
   --maxw: 1080px;
@@ -38,8 +51,8 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--gold); text-decoration: none; }
-a:hover { color: var(--gold-bright); text-decoration: underline; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--blue-bright); text-decoration: underline; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 
@@ -55,7 +68,7 @@ p { margin: 0 0 1em; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #14110df2;
+  background: #14181af2;
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
@@ -90,11 +103,14 @@ p { margin: 0 0 1em; }
   font-size: 0.95rem;
 }
 .nav a:hover { color: var(--text); text-decoration: none; background: var(--panel); }
-.nav a.active { color: var(--gold); background: var(--panel); }
+.nav a.active { color: var(--blue-bright); background: var(--panel); }
 
 /* ---------- Hero ---------- */
 
-.hero { padding: 64px 0 36px; }
+.hero {
+  padding: 64px 0 36px;
+  background: radial-gradient(62% 75% at 50% 0%, rgba(217, 168, 66, 0.12), transparent 62%);
+}
 
 .hero .kicker {
   display: inline-block;
@@ -149,13 +165,21 @@ p { margin: 0 0 1em; }
 }
 .btn-gold:hover { filter: brightness(1.08); }
 .btn-ghost { border: 1px solid var(--border-solid); color: var(--text); background: var(--bg-soft); }
-.btn-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue-bright); }
 
 /* ---------- Sections / layout ---------- */
 
 .section { padding: 48px 0; }
 .section-tight { padding-top: 24px; }
-.section-alt { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-alt {
+  background: radial-gradient(55% 70% at 50% 25%, rgba(86, 168, 211, 0.06), transparent 70%), var(--bg-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Hard-facts sections: slightly smaller text, unchanged 1.65 line-height (user, 2026-11-23) */
+.facts { font-size: 0.92rem; }
+.facts h2 { font-size: 1.4rem; }
 
 .lead-in { color: var(--muted); max-width: 46rem; margin-bottom: 1.8em; }
 
@@ -229,7 +253,7 @@ ul.check li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--gold);
+  color: var(--green);
   font-weight: 700;
 }
 
@@ -254,7 +278,7 @@ th {
   text-transform: uppercase;
   letter-spacing: 0.07em;
 }
-tr:hover td { background: #ffffff08; }
+tr:hover td { background: rgba(86, 168, 211, 0.06); }
 td code, p code, li code {
   font-family: var(--mono);
   font-size: 0.86em;
@@ -288,7 +312,7 @@ td code, p code, li code {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
 }
-.model-row:hover { background: #ffffff07; }
+.model-row:hover { background: rgba(86, 168, 211, 0.06); }
 .model-row .name { font-weight: 600; }
 .model-row .variant { color: var(--muted); font-size: 0.92rem; }
 .model-row .desc { color: var(--muted); font-size: 0.95rem; }
@@ -340,25 +364,59 @@ td code, p code, li code {
 .release hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 .release-source { font-size: 0.88rem; margin-top: 12px; margin-bottom: 0; }
 
+/* Featured (latest) release: one warm island above the cool log (user, 2026-11-23) */
+.release.featured {
+  border-color: var(--border-solid);
+  background: radial-gradient(70% 120% at 50% 0%, rgba(217, 168, 66, 0.08), transparent 65%), var(--panel);
+}
+.release.featured .release-head { background: transparent; }
+.release.featured .ver { font-size: 1.4rem; }
+
+/* Compact change log: version, date, notes — no sections, no download buttons */
+.log-title {
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 34px 0 14px;
+}
+.log-entry { margin-bottom: 16px; }
+.log-entry .log-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.log-entry .ver { font-size: 0.95rem; font-weight: 650; color: var(--gold); }
+.log-entry .date { font-size: 0.85rem; color: var(--muted); }
+.log-entry .log-notes { font-size: 0.92rem; color: var(--muted); }
+.log-entry .log-notes h3 { font-size: 0.95rem; color: var(--text); }
+.log-entry .log-notes li { margin-bottom: 0.3em; }
+.log-more { margin: 26px 0 0; }
+
 /* ---------- Install page ---------- */
 
+/* Warm island — one of the few brown/gold spots on the cool page. */
 .note-box {
-  border-left: 3px solid var(--gold-dim);
-  background: var(--panel);
+  border-left: 3px solid var(--gold);
+  background: var(--warm-bg);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 14px 18px;
   margin: 0 0 1.4em;
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--warm-text);
 }
-.note-box strong { color: var(--text); }
+.note-box strong { color: var(--gold-bright); }
 
 /* ---------- Footer ---------- */
 
 .site-footer {
   margin-top: 60px;
   border-top: 1px solid var(--border);
-  background: #131009;
+  background: radial-gradient(70% 90% at 50% 100%, rgba(86, 194, 110, 0.04), transparent 70%),
+    linear-gradient(180deg, var(--bg), #131719);
   padding: 34px 0 40px;
 }
 .footer-inner { display: grid; gap: 14px; }
