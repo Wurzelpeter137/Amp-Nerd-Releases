@@ -24,9 +24,12 @@ function otherPath(loc: Locale, pathname: string): string {
 const site = Astro.site ?? new URL("https://wurzelpeter137.github.io/Amp-Nerd-Releases/");
 const thisPath =
   page === "home" ? `/${locale}/` : page === "notfound" ? "/404" : `/${locale}/${page}/`;
+// Each locale points at its own page: the current locale reuses thisPath,
+// the other one is derived from it. (Before: the German link always used
+// thisPath, which on English pages pointed back at the English page itself.)
 const alternates = LOCALES.map((loc) => ({
   loc,
-  href: loc === "de" ? thisPath : otherPath("en", thisPath),
+  href: loc === locale ? thisPath : otherPath(loc, thisPath),
 }));
 ---
 
