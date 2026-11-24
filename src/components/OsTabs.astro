@@ -1,0 +1,81 @@
+---
+/**
+ * OsTabs — CSS-only Windows/macOS download tabs (hidden radio inputs +
+ * sibling panels, zero visitor JS; the driving rules are the `.dl-*`
+ * selectors in src/styles/global.css). Also renders the OS-independent
+ * CPU and input-level note box below the tabs.
+ *
+ * IDs are fixed (`dl-tab-win`, `dl-tab-mac`, `dl-body-win`, `dl-body-mac`)
+ * because the CSS addresses them; each page is a separate document so the
+ * IDs never collide. `.sig` assets are never rendered (existing decision).
+ */
+import { escapeHtml, findInstallers, formatSize, type Release, type ReleaseAsset } from "../utils/notes";
+import { DOWNLOAD_COPY, fill } from "../copy/download";
+import { UPSTREAM_RELEASES, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+  release: Release;
+  repo: string;
+}
+
+const { locale, release, repo } = Astro.props;
+const copy = DOWNLOAD_COPY[locale];
+const { win, mac } = findInstallers(release.assets);
+
+function dlFile(asset: ReleaseAsset | undefined): string {
+  if (!asset) {
+    return `<p class="dl-file">${fill(copy.missingLabel, UPSTREAM_RELEASES, repo)}</p>`;
+  }
+  return `<p class="dl-file">${escapeHtml(asset.name)} · ${formatSize(locale, asset.size)}</p>`;
+}
+---
+
+<div class="dl-tabs" aria-label={copy.tabsAria}>
+  <input type="radio" name="dl-os" id="dl-tab-win" class="dl-radio" checked={!!win} />
+  <input type="radio" name="dl-os" id="dl-tab-mac" class="dl-radio" checked={!win && !!mac} />
+  <div class="dl-head">
+    <label for="dl-tab-win">{copy.tabWin}</label>
+    <label for="dl-tab-mac">{copy.tabMac}</label>
+  </div>
+  <div id="dl-body-win" class="dl-body">
+    <a
+      class="btn btn-gold dl-btn"
+      href={win ? win.browser_download_url : UPSTREAM_RELEASES}
+      rel="noopener"
+    >
+      {copy.btnWin}
+    </a>
+    <div set:html={dlFile(win)} />
+    <dl class="dl-info">
+      {copy.installWin.map((row) => (
+        <div>
+          <dt>{row.dt}</dt>
+          <dd set:html={row.dd} />
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div id="dl-body-mac" class="dl-body">
+    <a
+      class="btn btn-gold dl-btn"
+      href={mac ? mac.browser_download_url : UPSTREAM_RELEASES}
+      rel="noopener"
+    >
+      {copy.btnMac}
+    </a>
+    <div set:html={dlFile(mac)} />
+    <dl class="dl-info">
+      {copy.installMac.map((row) => (
+        <div>
+          <dt>{row.dt}</dt>
+          <dd set:html={row.dd} />
+        </div>
+      ))}
+    </dl>
+  </div>
+</div>
+<div class="note-box dl-note">
+  <p set:html={copy.noteCpu} />
+  <p set:html={copy.noteInput} />
+</div>

@@ -1,0 +1,106 @@
+---
+import { BRAND_SUB, FOOTER, LOCALES, META, nav, type Locale, type PageKey } from "../i18n";
+import "../styles/global.css";
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+}
+
+const { locale, page } = Astro.props;
+const meta = META[locale][page];
+const footer = FOOTER[locale];
+const items = nav(locale);
+const activeHref =
+  page === "home" ? `/${locale}/` : page === "notfound" ? null : `/${locale}/${page}/`;
+
+// The other locale's copy of this page.
+function otherPath(loc: Locale, pathname: string): string {
+  const m = pathname.match(/^\/(?:de|en)\/(?:([^/]+)\/?)?$/);
+  const sub = m && m[1] && m[1] !== locale ? m[1] + "/" : "";
+  return `/${loc}/` + sub;
+}
+
+const site = Astro.site ?? new URL("https://wurzelpeter137.github.io/Amp-Nerd-Releases/");
+const thisPath =
+  page === "home" ? `/${locale}/` : page === "notfound" ? "/404" : `/${locale}/${page}/`;
+const alternates = LOCALES.map((loc) => ({
+  loc,
+  href: loc === "de" ? thisPath : otherPath("en", thisPath),
+}));
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={new URL(thisPath, site).href} />
+    {alternates.map(({ loc, href }) => (
+      <link rel="alternate" hreflang={loc} href={new URL(href, site).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(thisPath, site).href} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-inner">
+        <a class="brand" href={`/${locale}/`}>
+          <span class="brand-name">Amp&nbsp;Nerd</span>
+          <span class="brand-sub">{BRAND_SUB[locale]}</span>
+        </a>
+        <div class="nav-wrap">
+          <nav class="nav" aria-label={locale === "de" ? "Hauptnavigation" : "Main navigation"}>
+            {items.map((item) => (
+              <a
+                href={item.href}
+                class:list={[item.href === activeHref && "active"]}
+                aria-current={item.href === activeHref ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <nav class="lang" aria-label={locale === "de" ? "Sprache" : "Language"}>
+            {alternates.map(({ loc, href }) => (
+              <a
+                href={href}
+                class:list={[loc === locale && "active"]}
+                aria-current={loc === locale ? "true" : undefined}
+                title={loc.toUpperCase()}
+              >
+                {loc.toUpperCase()}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-links">
+          {footer.links.map((link) => (
+            <a href={link.href} {...(link.href.startsWith("http") ? { rel: "noopener" } : {})}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <p class="footer-note">{footer.note}</p>
+        <p class="copyright">{footer.copyright}</p>
+      </div>
+    </footer>
+  </body>
+</html>

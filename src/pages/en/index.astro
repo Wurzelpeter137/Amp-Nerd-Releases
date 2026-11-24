@@ -1,0 +1,121 @@
+---
+import Base from "../../layouts/Base.astro";
+import { UPSTREAM_RELEASES } from "../../i18n";
+---
+
+<Base locale="en" page="home">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">VST3 · Windows &amp; macOS</span>
+      <h1>Amp Nerd</h1>
+      <p class="lead">
+        No profiler, no convolution: Amp Nerd computes the <strong>complete circuit</strong>
+        of a vacuum-tube guitar amplifier as an electrical network – preamp, tone control,
+        phase inverter, power stage with output transformer, power supply and a reactive
+        speaker load. Every component is visible in the schematic, clickable and adjustable
+        within safe limits. Drive, compression, sag and hum emerge from the circuit – not from effects.
+      </p>
+      <ul class="meta-line">
+        <li>16+ amps &amp; 2 pedals</li>
+        <li>Tube swapping · mods</li>
+        <li>Test probe, oscilloscope</li>
+        <li>VST3 (Windows) · VST3 + AU (macOS)</li>
+      </ul>
+      <div class="cta">
+        <a class="btn btn-gold" href="/en/download/">Download</a>
+        <a class="btn btn-ghost" href="/en/download/#changelog">Changelog</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-label="Main view">
+    <div class="wrap">
+      <figure>
+        <img src="/img/jcm800-main.png" alt="Amp Nerd: JCM800 2203 100 W – front panel, complete circuit, component panel with operating values" width="1282" height="890">
+        <figcaption>JCM800 2203 100 W: panel, complete circuit and component panel with live-computed operating values.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>An amplifier you can put your hands on</h2>
+      <p class="lead-in">
+        Other plugins deliver tone. Amp Nerd delivers the path to it: every tube, every
+        resistor and every capacitor of the original circuit ships as an electrical model –
+        with live-computed anode voltages, currents and power dissipation.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>A schematic you can touch</h3>
+          <p>
+            Click any component and change it with a slider – only where a real amplifier
+            would not suffer damage. Plus an info text per component and a
+            “Simulation model” page.
+          </p>
+          <p><a href="/en/features/#schaltplan">Learn more →</a></p>
+        </div>
+        <div class="card">
+          <h3>Tubes &amp; mods</h3>
+          <p>
+            12AX7, 12AT7, 12AU7, 12AY7, 5751, 12AV7 per socket – with unit-to-unit spread and
+            optional auto-bias. Plus the classic hot-rod mods: cascade, master volume,
+            mid-boost, tight, clipping diodes and more.
+          </p>
+          <p><a href="/en/features/#roehren">Learn more →</a></p>
+        </div>
+        <div class="card">
+          <h3>Workbench inside the plugin</h3>
+          <p>
+            Probe any wire, oscilloscope with THD, audition at every point, signal generator,
+            frequency-response sweep and tone – as if the amp were connected on the workbench.
+          </p>
+          <p><a href="/en/features/#messen">Learn more →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt facts">
+    <div class="wrap">
+      <h2 class="mt-0">From Plexi-Tweed to the Dual Rectifier</h2>
+      <p>
+        Super Lead, JTM45, JCM800 2203, Silver Jubilee – plus Hiwatt, Fender (Tweed,
+        Silverface, Brownface), Dumble, Diezel and Mesa. On top: pedals with their own
+        circuit – the Tube Screamer in a TS808 case and an EQ pedal.
+      </p>
+      <ul class="check">
+        <li>16+ amp models and 2 pedals – every circuit built individually as an electrical network</li>
+        <li>Power as in the originals: from 1 W (micro-outputs with 12AU7 and EF80) to 100 W (JCM800, Silver Jubilee, Dual Rectifier)</li>
+        <li>Output tubes as in the originals: EL34, KT66, 6L6, 6V6, 6SC7 – and a GZ34 rectifier tube in the JTM45</li>
+      </ul>
+      <p>
+        All models <a href="/en/models/">in the overview</a> – with variants,
+        tube lineup and special features.
+      </p>
+      <p><a class="btn btn-ghost" href="/en/models/">View all models</a></p>
+    </div>
+  </section>
+
+  <section class="section facts">
+    <div class="wrap">
+      <h2 class="mt-0">Everything you hear is derived</h2>
+      <p>
+        Voltage, current, power dissipation, high voltage, output power – Amp Nerd shows
+        you what is happening in the circuit right now, and checks what can be changed safely
+        on a real amp during a rebuild.
+      </p>
+      <ul class="check">
+        <li>Live per tube: gain factor, transconductance, anode and cathode voltage, current, power dissipation</li>
+        <li>Power supply in view: high voltage, total current, maximum output power and THD</li>
+        <li>Three quality settings – Eco 2x, Normal 4x, High 8x: around 40–55 % of a CPU core at Normal 4x (AVX2)</li>
+        <li>Windows 10/11 (VST3) and macOS 10.15+ (VST3 &amp; AU) – in German and English</li>
+      </ul>
+      <div class="cta">
+        <a class="btn btn-gold" href="/en/features/">Features in detail</a>
+        <a class="btn btn-ghost" href={UPSTREAM_RELEASES}>Go to the downloads</a>
+      </div>
+    </div>
+  </section>
+</Base>

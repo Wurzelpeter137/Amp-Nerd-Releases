@@ -1,0 +1,188 @@
+---
+/* Amp Nerd — Features (English). German variant: src/pages/de/features.astro. */
+import Base from "../../layouts/Base.astro";
+---
+
+<Base locale="en" page="features">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Features</span>
+      <h1>Like a real workbench – just without the 400 volts</h1>
+      <p class="lead">
+        Amp Nerd is built the way the original amplifier is: circuit, tubes, supply,
+        load. And like a good workshop to go with it: measure, monitor, compare, fine-tune.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="schaltplan">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Circuit</span>
+          <h2>A schematic you can touch</h2>
+          <p>
+            The complete circuit – from the preamp through tone controls and phase
+            inverter to the output stage – is visible and interactive:
+          </p>
+          <ul>
+            <li>Click any component and change it with a slider – but only where a real amplifier would come to no harm: tube dissipation, voltages, resistor and capacitor stress are checked.</li>
+            <li>An info text for every component: what it does, what changing it does, safety notes for real amplifiers.</li>
+            <li>Plus a <strong>Simulation model</strong> page: what is simulated, what is not, what is derived and what the model is based on.</li>
+            <li>Operating points live: anode voltages, currents and dissipation of every tube, high voltage, output power.</li>
+          </ul>
+          <p><a href="/en/models/">Which circuits are included →</a></p>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/jcm800-main.png" alt="JCM800 2203: front panel, complete circuit, component panel with operating values" width="1282" height="890" loading="lazy" />
+            <figcaption>JCM800 2203: panel, circuit and the component panel with live-computed values.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt section-tight" id="roehren">
+    <div class="wrap">
+      <div class="feature flip">
+        <div class="feature-media">
+          <div class="grid-2" style="gap:14px">
+            <figure>
+              <img src="/img/tube-panel.png" alt="Tube panel: socket V1b, tube type 12AX7, mu, transconductance, operating values" width="500" height="229" loading="lazy" />
+              <figcaption>Socket, tube type and the characteristics of the chosen tube.</figcaption>
+            </figure>
+            <figure>
+              <img src="/img/mods-panel.png" alt="List of hot-rod mods: negative feedback off, mid boost, V2 gain boost, tight, depth, gain mod, clipping diodes" width="543" height="375" loading="lazy" />
+              <figcaption>Hot-rod mods – available per model, with descriptions.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="feature-body">
+          <span class="feature-tag">Tubes &amp; mods</span>
+          <h2>Swap tubes, apply mods</h2>
+          <p>
+            The way it has always been done in the garage:
+          </p>
+          <ul>
+            <li><strong>Tube swap per socket:</strong> 12AX7, 12AT7, 12AU7, 12AY7, 5751, 12AV7 – not as a sample, but with real characteristics and per-tube spread (mu, transconductance). Optionally the operating point is adjusted automatically, like biasing a real amp.</li>
+            <li><strong>Mods per model:</strong> cascaded, master volume, negative feedback off, mid boost, V2 gain boost, tight, depth, gain mod – and clipping diodes in silicon, germanium, Schottky or LED, including asymmetric setups.</li>
+            <li>The <strong>info button</strong> shows the history, the reference amp and the output power computed from the current components for every model.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="messen">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Workbench</span>
+          <h2>Measure and listen, like on the bench</h2>
+          <ul>
+            <li><strong>Test probe:</strong> click a wire → real-time voltage plus an oscilloscope with a THD readout.</li>
+            <li><strong>Monitoring at any point</strong> in the circuit – hear how the tone builds up stage by stage, before and after the gain boost.</li>
+            <li><strong>Signal generator:</strong> inject a sine wave anywhere – e.g. right behind the preamp.</li>
+            <li>A <strong>frequency sweep</strong> over the entire circuit and the <strong>tonal picture</strong>: distortion and harmonics as a function of level and frequency.</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/scope.png" alt="Oscilloscope at the test point with a THD readout, signal generator" width="693" height="396" loading="lazy" />
+            <figcaption>Oscilloscope at the test point: waveform, level, THD – plus the signal generator.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="feature flip">
+        <div class="feature-media">
+          <figure>
+            <img src="/img/probe-signal-path.png" alt="Test point at the anode of V1b, signal path highlighted in green, oscilloscope with THD" width="1282" height="890" loading="lazy" />
+            <figcaption>The signal path, highlighted up to the test point – monitoring right at the anode.</figcaption>
+          </figure>
+        </div>
+        <div class="feature-body">
+          <span class="feature-tag">Workbench</span>
+          <h2>The signal path, made visible</h2>
+          <p>
+            While you monitor, Amp Nerd highlights the signal's way through the circuit –
+            you can see which stage is working right now and which is not. Helpful to
+            understand where a tone comes from: which diodes clip, where the cascaded
+            stage kicks in, how much the tone stack is attenuating.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt section-tight" id="netz">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Supply &amp; load</span>
+          <h2>Variac, cab, impedance – all adjustable</h2>
+          <ul>
+            <li><strong>Supply voltage via a variac</strong> and 230&nbsp;V/50&nbsp;Hz or 120&nbsp;V/60&nbsp;Hz – anode voltage, bias and hum respond to it, like from a real wall outlet.</li>
+            <li><strong>Reactive speaker load:</strong> seven cabinets (1×12 to 8×10), a dedicated <strong>load editor</strong> with an impedance curve and an 8&nbsp;Ω measurement load.</li>
+            <li><strong>Cab sim:</strong> off, built-in cabinet filters or your own impulse response (WAV).</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/load-curve.png" alt="Impedance curve of the chosen speaker load – 4×12 closed cabinet" width="525" height="264" loading="lazy" />
+            <figcaption>The reactive load as an impedance curve – here a 4×12 closed cabinet type.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="feature flip" id="presets">
+        <div class="feature-body">
+          <span class="feature-tag">Presets &amp; language</span>
+          <h2>Get to the sound fast</h2>
+          <ul>
+            <li><strong>Factory presets</strong> with historic sounds and hot-rod variants – plus your own presets alongside.</li>
+            <li><strong>German or English</strong>, automatically following the system language.</li>
+            <li><strong>Updates:</strong> a button in the plugin shows new versions with their changes and starts the installer; when opening it checks at most once a day.</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/mods-panel.png" alt="Presets and the mod list in the plugin" width="543" height="375" loading="lazy" />
+            <figcaption>Mods with descriptions – presets and settings are kept per model.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="pedale">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Pedals</span>
+          <h2>Pedal mode</h2>
+          <p>
+            Beside the amplifiers there are pedals – also as complete circuits, not as
+            presets on top of an amp model. So the effect can be dialed in, measured and
+            monitored in isolation:
+          </p>
+          <ul>
+            <li><strong>I&nbsp;– TS808 Tube Screamer:</strong> input buffer, clipping stage and tone stage as their own circuit in a TS808 enclosure, with the typical controls for tone, mid and level.</li>
+            <li><strong>EQ pedal:</strong> a parametric EQ pedal with its own view – since version 1.54.0.</li>
+          </ul>
+          <p>
+            Pedals can be placed in front of an amp – or used on their own when you only
+            want the booster effect or the tone shaping.
+          </p>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/pedal-ts808.png" alt="Pedal mode: TS808 Tube Screamer with its own circuit – input buffer, clipping stage, tone and level stage" width="530" height="412" loading="lazy" />
+            <figcaption>TS808 Tube Screamer: input buffer, clipping stage, tone and level stage – completely rebuilt.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

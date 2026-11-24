@@ -1,0 +1,188 @@
+---
+/* Amp Nerd — Funktionen (German). English variant: src/pages/en/features.astro. */
+import Base from "../../layouts/Base.astro";
+---
+
+<Base locale="de" page="features">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Funktionen</span>
+      <h1>Wie eine echte Werkbank – nur ohne die 400 Volt</h1>
+      <p class="lead">
+        Amp Nerd ist so aufgebaut wie der Originalverstärker: Schaltung, Röhren, Netz,
+        Last. Und wie eine gute Werkstatt dazu: messen, abhören, vergleichen, nachjustieren.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="schaltplan">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Schaltung</span>
+          <h2>Schaltplan zum Anfassen</h2>
+          <p>
+            Die komplette Schaltung – von der Vorstufe über Klangregelung und Phasenumkehr
+            bis zur Endstufe – ist sichtbar und interaktiv:
+          </p>
+          <ul>
+            <li>Jedes Bauteil anklicken und per Schieberegler ändern – aber nur dort, wo der echte Verstärker keinen Schaden nähme: Röhren-Verlustleistung, Spannungen, Widerstands- und Elko-Belastung werden geprüft.</li>
+            <li>Zu jedem Bauteil ein Infotext: was es tut, was eine Änderung bewirkt, Sicherheitshinweise für echte Verstärker.</li>
+            <li>Plus Seite <strong>Simulationsmodell</strong>: was simuliert wird, was nicht, was abgeleitet ist und worauf das Modell beruht.</li>
+            <li>Arbeitspunkte live: Anodenspannungen, Ströme und Verlustleistung jeder Röhre, Hochspannung, Ausgangsleistung.</li>
+          </ul>
+          <p><a href="/de/models/">Welche Schaltungen dabei sind →</a></p>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/jcm800-main.png" alt="JCM800 2203: Frontpanel, komplette Schaltung, Bauteil-Panel mit Betriebswerten" width="1282" height="890" loading="lazy" />
+            <figcaption>JCM800 2203: Panel, Schaltung und Bauteil-Panel mit live ermittelten Werten.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt section-tight" id="roehren">
+    <div class="wrap">
+      <div class="feature flip">
+        <div class="feature-media">
+          <div class="grid-2" style="gap:14px">
+            <figure>
+              <img src="/img/tube-panel.png" alt="Röhren-Panel: Sockel V1b, Röhrentyp 12AX7, µ, Steilheit, Betriebswerte" width="500" height="229" loading="lazy" />
+              <figcaption>Sockel, Röhrentyp und Kennzahlen der gewählten Röhre.</figcaption>
+            </figure>
+            <figure>
+              <img src="/img/mods-panel.png" alt="Liste der Hot-Rod-Mods: Gegenkopplung aus, Mittenboost, V2-Gainboost, Tight, Depth, Gain-Mod, Clipping-Dioden" width="543" height="375" loading="lazy" />
+              <figcaption>Hot-Rod-Mods – je Modell verfügbar, mit Beschreibung.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="feature-body">
+          <span class="feature-tag">Röhren &amp; Mods</span>
+          <h2>Röhren tauschen, Moddings anbringen</h2>
+          <p>
+            So, wie es in der Garage immer schon gemacht wird:
+          </p>
+          <ul>
+            <li><strong>Röhrenwechsel je Sockel:</strong> 12AX7, 12AT7, 12AU7, 12AY7, 5751, 12AV7 – nicht als Sample, sondern mit echten Kennwerten und Exemplarstreuung (µ, Steilheit). Optional wird der Arbeitspunkt automatisch angepasst, wie bei der Bias-Einstellung am echten Amp.</li>
+            <li><strong>Mods je nach Modell:</strong> Kaskade, Master Volume, Gegenkopplung aus, Mittenboost, V2-Gainboost, Tight, Depth, Gain-Mod – und Clipping-Dioden in Silizium, Germanium, Schottky oder LED, auch unsymmetrisch.</li>
+            <li>Der <strong>Info-Knopf</strong> zeigt zu jedem Modell Geschichte, Vorbild und die aus den aktuellen Bauteilen berechnete Ausgangsleistung.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="messen">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Werkbank</span>
+          <h2>Messen und hören, wie an der Bank</h2>
+          <ul>
+            <li><strong>Messspitze:</strong> Leitung anklicken → Spannung in Echtzeit plus Oszilloskop mit Klirrfaktor-Anzeige.</li>
+            <li><strong>Abhören an jedem Punkt</strong> der Schaltung – hören, wie der Ton Stufe für Stufe entsteht, vor dem Gain-Booster und danach.</li>
+            <li><strong>Signalgenerator:</strong> Sinus an beliebiger Stelle einspeisen – z. B. direkt hinter der Vorstufe.</li>
+            <li><strong>Frequenzgang-Sweep</strong> über die ganze Schaltung und das <strong>Klangbild</strong>: Verzerrung und Obertöne als Funktion von Pegel und Frequenz.</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/scope.png" alt="Oszilloskop am Messpunkt mit Klirrfaktor-Anzeige, Signalgenerator" width="693" height="396" loading="lazy" />
+            <figcaption>Oszilloskop am Messpunkt: Form, Pegel, Klirrfaktor – plus Signalgenerator.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="feature flip">
+        <div class="feature-media">
+          <figure>
+            <img src="/img/probe-signal-path.png" alt="Messpunkt an der Anode von V1b, Signalpfad grün markiert, Oszilloskop mit THD" width="1282" height="890" loading="lazy" />
+            <figcaption>Der Signalpfad, markiert bis zum Messpunkt – Abhören direkt an der Anode.</figcaption>
+          </figure>
+        </div>
+        <div class="feature-body">
+          <span class="feature-tag">Werkbank</span>
+          <h2>Signalpfad sichtbar</h2>
+          <p>
+            Beim Abhören markiert Amp Nerd den Weg des Signals durch die Schaltung – man
+            sieht, welche Stufe gerade mitarbeitet, welche nicht. Hilfreich, um zu
+            verstehen, woher ein Klang kommt: welche Dioden kappen, wo die Kaskade wirkt,
+            wie viel der Tone Stack dämpft.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt section-tight" id="netz">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Netz &amp; Last</span>
+          <h2>Variac, Box, Impedanz – alles drehbar</h2>
+          <ul>
+            <li><strong>Netzspannung per Variac</strong> sowie 230&nbsp;V/50&nbsp;Hz oder 120&nbsp;V/60&nbsp;Hz – Anodenspannung, Bias und Brumm reagieren darauf, wie am echten Netzstecker.</li>
+            <li><strong>Reaktive Lautsprecherlast:</strong> sieben Boxen (1×12 bis 8×10), eigener <strong>Last-Editor</strong> mit Impedanzkurve und eine 8-Ω-Messlast.</li>
+            <li><strong>Cab Sim:</strong> aus, eingebaute Box-Filter oder eine eigene Impulsantwort (WAV).</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/load-curve.png" alt="Impedanzkurve der gewählten Lautsprecherlast – 4×12 geschlossenes Gehäuse" width="525" height="264" loading="lazy" />
+            <figcaption>Die reaktive Last als Impedanzkurve – hier 4×12 geschlossener Boxentyp.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="feature flip" id="presets">
+        <div class="feature-body">
+          <span class="feature-tag">Presets &amp; Sprache</span>
+          <h2>Schnell zum Sound</h2>
+          <ul>
+            <li><strong>Werkspresets</strong> mit historischen Sounds und Hot-Rod-Varianten – und die eigenen Presets nebenher.</li>
+            <li><strong>Deutsch oder Englisch</strong>, automatisch nach der Systemsprache.</li>
+            <li><strong>Updates:</strong> Ein Knopf im Plugin zeigt neue Versionen samt Änderungen und startet den Installer; beim Öffnen wird höchstens einmal am Tag nachgesehen.</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/mods-panel.png" alt="Presets und Mods-Liste im Plugin" width="543" height="375" loading="lazy" />
+            <figcaption>Mods mit Beschreibung – Presets und Settings bleiben pro Modell erhalten.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="pedale">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-body">
+          <span class="feature-tag">Pedale</span>
+          <h2>Pedal-Modus</h2>
+          <p>
+            Neben den Verstärkern gibt es Pedale – ebenfalls als komplette Schaltung, nicht
+            als Preset über ein Amp-Modell. So lässt sich der Effekt isoliert einstellen,
+            messen und abhören:
+          </p>
+          <ul>
+            <li><strong>I&nbsp;– TS808 Tube Screamer:</strong> Eingangspuffer, Kappstufe und Klangstufe als eigene Schaltung im TS808-Gehäuse, mit den typischen Reglern für Klang, Mitten und Pegel.</li>
+            <li><strong>EQ-Pedal:</strong> parametrisches Klangregel-Pedal mit eigener Ansicht – seit Version 1.54.0.</li>
+          </ul>
+          <p>
+            Pedale lassen sich vor einen Amp schalten – oder allein verwenden, wenn nur der
+            Booster-Effekt oder das Klangbedienen gewünscht ist.
+          </p>
+        </div>
+        <div class="feature-media">
+          <figure>
+            <img src="/img/pedal-ts808.png" alt="Pedal-Modus: TS808 Tube Screamer mit eigener Schaltung – Eingangspuffer, Kappstufe, Klang- und Pegelstufe" width="530" height="412" loading="lazy" />
+            <figcaption>TS808 Tube Screamer: Eingangspuffer, Kappstufe, Klang- und Pegelstufe – komplett nachgebaut.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

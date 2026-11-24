@@ -1,0 +1,99 @@
+---
+/**
+ * DownloadContent — the release-dependent part of the download pages
+ * (`#download` tabs + `#changelog`). Rendered at build time from
+ * src/data/releases.json (written by scripts/render-releases.mjs).
+ * Copy: src/copy/download.ts. Notes stay in German on both locales (D3).
+ */
+import OsTabs from "../components/OsTabs.astro";
+import { DOWNLOAD_COPY, fill } from "../copy/download";
+import { UPSTREAM, UPSTREAM_RELEASES, UPSTREAM_REPO, type Locale } from "../i18n";
+import { formatDate, renderNotes } from "../utils/notes";
+import releases from "../data/releases.json";
+
+const { locale } = Astro.props as { locale: Locale };
+const copy = DOWNLOAD_COPY[locale];
+const fillCopy = (template: string) => fill(template, UPSTREAM_RELEASES, UPSTREAM_REPO);
+
+const list = (releases as {
+  name: string;
+  tag_name: string;
+  published_at: string;
+  body: string;
+  html_url: string;
+  assets?: { name: string; browser_download_url: string; size: number }[];
+}[])
+  .filter((r) => !/prerelease|draft/i.test(r.name))
+  .sort((a, b) => (a.published_at < b.published_at ? 1 : -1));
+
+const featured = list[0];
+const older = list.slice(1);
+---
+
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">{copy.kicker}</span>
+    <h1>{copy.h1}</h1>
+    <p class="lead" set:html={fillCopy(copy.lead)} />
+  </div>
+</section>
+
+<section class="section section-tight" id="download">
+  <div class="wrap">
+    {
+      featured ? (
+        <OsTabs locale={locale} release={featured} repo={UPSTREAM_REPO} />
+      ) : (
+        <div class="empty-state">
+          <h2>{copy.emptyTitle}</h2>
+          <p set:html={fillCopy(copy.emptyBody)} />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+{
+  list.length ? (
+    <section class="section section-tight" id="changelog">
+      <div class="wrap">
+        <h2>{copy.logH2}</h2>
+        <p class="lead-in" set:html={fillCopy(copy.logLead)} />
+
+        <div class="release featured">
+          <div class="release-head">
+            <span class="ver">{featured.name}</span>
+            <span class="date">{formatDate(locale, featured.published_at)}</span>
+          </div>
+          <div class="release-body">
+            <div class="release-notes" set:html={renderNotes(featured.body)} />
+            <p class="release-source">
+              <a href={featured.html_url} rel="noopener">{copy.sourceLabel}</a>
+            </p>
+          </div>
+        </div>
+
+        {
+          older.length ? (
+            <>
+              <h2 class="log-title">{copy.olderTitle}</h2>
+              {older.map((release) => (
+                <div class="log-entry">
+                  <div class="log-head">
+                    <span class="ver">{release.name}</span>
+                    <span class="date">{formatDate(locale, release.published_at)}</span>
+                  </div>
+                  <div class="log-notes" set:html={renderNotes(release.body)} />
+                </div>
+              ))}
+            </>
+          ) : ""
+        }
+
+        <p class="log-more">
+          <a class="btn btn-gold" href={UPSTREAM_RELEASES} rel="noopener">{copy.moreBtn}</a>
+        </p>
+      </div>
+    </section>
+  ) : ""
+}

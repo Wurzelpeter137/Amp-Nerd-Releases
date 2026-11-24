@@ -1,6 +1,7 @@
-# Regeneriert download.html, sobald ein Release veröffentlicht (oder bearbeitet)
-# wurde, und committed das Ergebnis zurück. Besucher der Website benötigen
-# kein JavaScript – die Page ist statisch.
+# Regeneriert src/data/releases.json, sobald ein Release veröffentlicht (oder
+# bearbeitet) wurde, und committed das Ergebnis zurück. Die Astro-Website
+# rendert aus der JSON beim Build die Download-Seiten – Besucher benötigen
+# kein JavaScript (der astro-Workflow deployt dann automatisch neu).
 name: render-releases
 
 on:
@@ -23,7 +24,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Render download.html
+      - name: Render releases.json
         run: node scripts/render-releases.mjs
         env:
           # Optional: erhöht den API-Rate-Limit. Ohne Token nutzt der
@@ -37,10 +38,10 @@ jobs:
         run: |
           git config user.name  "$GH_COMMITTER_NAME"
           git config user.email "$GH_COMMITTER_EMAIL"
-          if git diff --quiet download.html && [ -z "$(git status --porcelain download.html)" ]; then
-            echo "download.html unchanged – nothing to commit."
+          if git diff --quiet src/data/releases.json && [ -z "$(git status --porcelain src/data/releases.json)" ]; then
+            echo "releases.json unchanged – nothing to commit."
           else
-            git add download.html
+            git add src/data/releases.json
             git commit -m "chore(releases): render-releases $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi

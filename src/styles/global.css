@@ -94,7 +94,21 @@ p { margin: 0 0 1em; }
 }
 .brand-sub { font-size: 0.78rem; color: var(--muted); }
 
+.nav-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .nav { display: flex; gap: 4px; flex-wrap: wrap; }
+
+/* Language switcher (DE / EN): quiet until the non-active language is picked. */
+.lang { display: flex; gap: 2px; border: 1px solid var(--border-solid); border-radius: 8px; padding: 2px; background: var(--bg-soft); }
+.lang a {
+  color: var(--faint);
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.4px;
+}
+.lang a:hover { color: var(--text); text-decoration: none; }
+.lang a.active { color: #1c1405; background: linear-gradient(180deg, var(--gold-bright), var(--gold)); }
 
 .nav a {
   color: var(--muted);
